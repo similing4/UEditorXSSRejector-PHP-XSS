@@ -83,8 +83,7 @@ class UEditorXSSRejector{
 	public function dfs($doms){
 		foreach ($doms as $domitem) {
 			if($domitem->tag=='text'){
-				$domitem->innertext=str_replace("<", "&lt;", $domitem->innertext);
-				$domitem->innertext=str_replace(">", "&gt;", $domitem->innertext);
+				$domitem->innertext=htmlspecialchars($domitem->innertext);
 			}
 			if(!in_array($domitem->tag, array_keys($this->allowParams))){
 				$domitem->outertext="";
